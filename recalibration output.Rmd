@@ -1,0 +1,41 @@
+---
+output:
+  word_document:
+    fig_caption: yes
+    fig_height: 5
+    fig_width: 5
+    reference_docx: recalibration_output.docx
+  html_document: default
+---
+
+# Contnuous Emission Monitoring System
+
+## Recalibration Report
+
+
+
+########
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+source('C:/Users/Udit_Gupta/Dropbox/ETS/Data/recalibration_2017/Code/recalibration/recalibration_checks.R')
+  composite_id <- "GJSRT100740111"
+  
+  sample_result_df<- make_sample_result_df()
+  ind_result_df <- make_ind_result_df()
+  df_result <- import_result()
+  data_raw_csv  <- read_raw_CSV()
+  data_raw_csv <- identify_rawdatawithsample()
+  data_av <- calculate_data_availabilty()
+  df_analysis <- merge_rawPM()
+  df_analysis <- createmsg()
+  ind_result_df <- calculate_calib_factors()
+  tt<- ind_result_df[which(ind_result_df$composite_id==composite_id),]
+  tt2 <-t(tt)
+  kable(tt2) %>%
+    kable_styling(bootstrap_options = "striped", full_width = T, position = "center",font_size = 12)
+
+
+```
+
+
